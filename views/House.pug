@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
-  - var results = [{"House_Name": "Village O", "Housing_Company": "Maryville Builders", "House_Size": 400, "Housing_Company_Rating": 4.7},{"House_Name": "Parkway Terrace", "Housing_Company": "Bearcat Builders", "House_Size": 300, "Housing_Company_Rating": 4.5},{"House_Name": "Horizons", "Housing_Company": "Northwest Builders", "House_Size": 500, "Housing_Company_Rating": 4.8}]
+  - var result = results 
   div.container-fluid 
     div.row 
-        each item, index in results
+        each item, index in result
             div.col-sm-2(onclick=`buy(${index})`) House Name: #{item["House_Name"]} <br> Housing Company: #{item["Housing_Company"]} <br> House Size: #{item["House_Size"]} <br> Housing Company Rating: #{item["Housing_Company_Rating"]}
   script.
     function buy(index) {
