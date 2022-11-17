@@ -12,7 +12,7 @@ mongoose.connect(connectionString,
 useUnifiedTopology: true});
 //Get the default connection 
 var db = mongoose.connection; 
-var House = require("./models/house"); 
+var House = require("./models/House"); 
  
 //Bind connection to error event  
 db.on('error', console.error.bind(console, 'MongoDB connection error:')); 

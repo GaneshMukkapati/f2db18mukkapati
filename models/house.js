@@ -5,5 +5,4 @@ const HouseSchema = mongoose.Schema({
     Housing_Company_Rating: Number,
 }) 
  
-module.exports = mongoose.model("House", 
-HouseSchema) 
+module.exports = mongoose.model("House", HouseSchema) 

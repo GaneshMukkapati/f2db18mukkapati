@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if(toShow == null)
+    h2 No instance to update
+ else
+ - let Houseid = toShow._id
+ - let House_Name = toShow.House_Name
+ - let Housing_Company = toShow.Housing_Company
+ - let Housing_Company_Rating = toShow.Housing_Company_Rating
+ div
+ div.row
+  div(class='HouseAttr mr-3') House ID is:
+  div #{Houseid}
+ div.row
+ div(class='HouseAttr mr-3') House Name is:
+ div #{House_Name}
+ div.row
+ div(class='HouseAttr mr-3') House Company is:
+ div #{Housing_Company}
+ div.row
+ div(class='HouseAttr mr-3') House Rating  is:
+ div #{Housing_Company_Rating}

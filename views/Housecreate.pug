@@ -1,0 +1,28 @@
+extends layout
+block content
+ h1= title
+ form(id='HouseForm', action="/resource/Houses", method="POST")
+  div.form-group
+   label.HouseAttr(for='House_Name') House Name
+   input#House_Name(type='text', name='House_Name')
+  div.form-group
+   label.HouseAttr(for='Housing_Company') House Company 
+   input#Housing_Company(type='text', name='Housing_Company')
+  div.form-group
+   label.HouseAttr(for='Housing_Company_Rating') Housing_Company_Ratingst 
+   input#Housing_Company_Rating(type='text', name='Housing_Company_Rating')
+  input(type="submit")
+ script.
+  document.forms['HouseForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.json();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   }); 

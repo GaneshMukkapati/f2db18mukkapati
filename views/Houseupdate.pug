@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to update
+  else
+    - let Houseid = toShow._id
+    - let House_Name = toShow.House_Name
+    - let Housing_Company = toShow.Housing_Company
+    - let Housing_Company_Rating = toShow.Housing_Company_Rating
+    - let actionid = "/resource/Houses/" + Houseid
+    script let actionid = "#{actionid}"
+    div.row(class='mb-2')
+    div.mr-1 ID is 
+      span(style="color:red")  #{Houseid}
+    form(id='HouseForm', action= actionid, method="PUT")
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.HouseAttr(for='House_Name',class="col-form-label") House_Name
+        div(class="col-auto")
+          input#House_Name(type='text', name='House_Name',class="form-control", value=House_Name)
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.HouseAttr(for='Housing_Company',class="col-form-label") Housing_Company 
+        div(class="col-auto")
+          input#Housing_Company(type='text', name='Housing_Company',class="form-control", value=Housing_Company)
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.HouseAttr(for='Housing_Company_Rating',class="col-form-label") Housing_Company_Rating
+        div(class="col-auto")
+          input#Housing_Company_Rating(type='number', name='Housing_Company_Rating',class="form-control", value=Housing_Company_Rating)
+      input(class="btn btn-danger m-2" type="submit")
+        //- button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    
+    script.
+      document.forms['HouseForm'].addEventListener('submit', (event) => {
+       event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+       fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+       });
+      });
